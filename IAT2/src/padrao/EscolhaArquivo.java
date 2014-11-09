@@ -6,6 +6,7 @@
 package padrao;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,14 +23,15 @@ import javax.swing.JFileChooser;
  */
 public class EscolhaArquivo extends javax.swing.JFrame {
 
-    ArrayList<String> arquivoASeTratado;
-    ArrayList<String> arquivoComOsItensParaExclusao;
+    ArrayList<String> arquivoASeTratado = new ArrayList<>();
+    ArrayList<String> arquivoComOsItensParaExclusao = new ArrayList<>();
 
     /**
      * Creates new form EscolhaArquivo
      */
     public EscolhaArquivo() {
         initComponents();
+       
     }
 
     /**
@@ -54,10 +56,16 @@ public class EscolhaArquivo extends javax.swing.JFrame {
         jList3 = new javax.swing.JList();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList4 = new javax.swing.JList();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Escolha o arquivo a ser tratado");
+        jButton1.setText("Escolha da pasta a ser tratada");
         jButton1.setActionCommand("Escolha o arquivo com as palavras iniciais");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,32 +84,18 @@ public class EscolhaArquivo extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel1");
 
-        jButton3.setText("Processar");
+        jButton3.setText("Salvar documento Processado");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(jList3);
 
         jButton4.setText("+");
@@ -118,67 +112,114 @@ public class EscolhaArquivo extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Nome da classe");
+
+        jLabel4.setText("jLabel4");
+
+        jList4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList4MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jList4);
+
+        jButton6.setText("Processar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("R");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(320, 320, 320)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addGap(181, 181, 181))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(30, 30, 30)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jButton6)
+                        .addGap(221, 221, 221)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton2)
+                        .addGap(7, 7, 7)
+                        .addComponent(jButton5))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7))
+                .addGap(11, 11, 11)
+                .addComponent(jLabel2)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                    .addComponent(jButton6)
+                    .addComponent(jButton3))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -193,14 +234,14 @@ public class EscolhaArquivo extends javax.swing.JFrame {
 
         if (returnVal == JFileChooser.CANCEL_OPTION) {
         } else {
-            String path = fileChooser.getSelectedFile().getPath();
+            String path = fileChooser.getSelectedFile().getParent();
 
             jLabel1.setText(path);
 
             try {
-                arquivoASeTratado = leArquivo(path, model);
+                arquivoASeTratado = lePasta(new File(path), model);
                 jList1.setModel(model);
-                System.out.println("Arquivo:" + path + "\nnumero de linhas" + arquivoASeTratado.size());
+         //       System.out.println("Arquivo:" + path + "\nnumero de linhas" + arquivoASeTratado.size());
             } catch (IOException ex) {
                 Logger.getLogger(EscolhaArquivo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -224,7 +265,7 @@ public class EscolhaArquivo extends javax.swing.JFrame {
             try {
                 arquivoComOsItensParaExclusao = leArquivo(path, model);
                 jList2.setModel(model);
-                System.out.println("Arquivos para exclusao:" + path + "\nnumero de linhas" + arquivoComOsItensParaExclusao.size());
+                System.out.println("Arquivos para exclusao:" + path);
             } catch (IOException ex) {
                 Logger.getLogger(EscolhaArquivo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -251,6 +292,29 @@ public class EscolhaArquivo extends javax.swing.JFrame {
         // TODO add your handling code here:
         processaArquivo(arquivoASeTratado, arquivoASeTratado);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jList4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList4MouseClicked
+        try {
+            leArquivo((jLabel1.getText()+"\\"+jList4.getSelectedValue().toString()), (DefaultListModel) jList1.getModel());
+        } catch (IOException ex) {
+            Logger.getLogger(EscolhaArquivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jList4MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel model = new DefaultListModel();
+        for (String s: arquivoComOsItensParaExclusao){
+        model.addElement(s);
+        
+        }
+        jList2.setModel(model);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,17 +357,59 @@ public class EscolhaArquivo extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
+    private javax.swing.JList jList4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 
-    private ArrayList<String> leArquivo(String arquivo, DefaultListModel model) throws FileNotFoundException, IOException {
+    
+    
+    private ArrayList<String> lePasta(File dir, DefaultListModel model) throws FileNotFoundException, IOException {
+        
+        ArrayList<File> listaDeArquivos = new ArrayList<>();
+        DefaultListModel modeloArquivos  = new DefaultListModel();
+        jLabel4.setText(dir.getName());
+        if (dir.isDirectory()) {  
+            String[] filhos = dir.list();  
+            for (int i = 0; i < filhos.length; i++) {  
+                File nome = new File(dir, filhos[i]);  
+                if (nome.isFile()) {  
+                    
+                        listaDeArquivos.add(nome);  
+                        modeloArquivos.addElement(nome.getName());
+                    
+                
+            }
+            }
+        
+        }
+        jList4.setModel(modeloArquivos);
+
+//        for (File arquivo: listaDeArquivos){
+//        ArrayList<String> leArquivo = leArquivo(arquivo);
+//        
+//        
+//        
+//        for (String s : leArquivo) {
+//
+//            model.addElement(s);
+//        }
+//        }
+        return null;
+    }
+    
+    private ArrayList<String> leArquivo(File arquivo) throws FileNotFoundException, IOException {
         ArrayList<String> lista = new ArrayList<>();
         FileInputStream fis = new FileInputStream(arquivo);
 
@@ -314,7 +420,32 @@ public class EscolhaArquivo extends javax.swing.JFrame {
         while ((line = br.readLine()) != null) {
             //System.out.println(line);
             lista.add(line);
-            model.addElement(line);
+      
+        }
+
+        br.close();
+        return lista;
+    }
+        private ArrayList<String> leArquivo(String arquivo, DefaultListModel model) throws FileNotFoundException, IOException {
+        ArrayList<String> lista = new ArrayList<>();
+        FileInputStream fis = new FileInputStream(arquivo);
+
+        //Construct BufferedReader from InputStreamReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            //System.out.println(line);
+            if (isNumeric(line)||isMenorQueDois(line)){
+                if (cadastraNaLista(arquivoComOsItensParaExclusao,line)){
+                    arquivoComOsItensParaExclusao.add(line);
+                }
+            }
+                else{
+                lista.add(line);
+                model.addElement(line);
+                }
+            
         }
 
         br.close();
@@ -322,6 +453,7 @@ public class EscolhaArquivo extends javax.swing.JFrame {
     }
 
     public boolean cadastraNaLista(ArrayList<String> lista, String texto) {
+
         for (String s : lista) {
             if (s.equalsIgnoreCase(texto)) {
                 return false;
@@ -334,7 +466,8 @@ public class EscolhaArquivo extends javax.swing.JFrame {
 
     public void processaArquivo(ArrayList<String> listaASerProcessada, ArrayList<String> listaASerExcluida) {
 
-        for (String s1 : listaASerProcessada) {
+        for (int i = 0 ; i <listaASerProcessada.size();i++){
+        String s1 = listaASerProcessada.get(i);
             for (String s2 : listaASerExcluida) {
                 if (s1.equalsIgnoreCase(s2)) {
                     listaASerProcessada.remove(s1);
@@ -349,6 +482,28 @@ public class EscolhaArquivo extends javax.swing.JFrame {
 
         }
         jList3.setModel(model);
+    }
+    
+    
+    public boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isMenorQueDois(String str) {
+
+        if (str.length() > 1) {
+            return false;
+        }
+
+        return true;
+    }
+    public void salvaArquivoExclusao(){
+    
     }
 
 }
